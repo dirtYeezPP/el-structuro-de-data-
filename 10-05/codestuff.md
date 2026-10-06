@@ -146,3 +146,75 @@ def appendValue(self, value):
                 print("gaeee")
         # index += 1 
 ```
+
+
+``` py
+# a.appendValue(4)
+# a.appendValue(5)
+# a.appendValue(3)
+# a.appendValue(4)
+# print(a)
+# a.appendValue(7) -> list reached limit yippie works 
+
+# a.setValue(0, 9)
+
+# print(a.ArrSize())
+# print(a.getValue(0))
+# print(a)
+# print(a.Arr_is_empty())
+# a.popValue()
+# print(a)
+
+# a.removeValue(5)
+# print(a)
+```
+
+``` py
+    def removeValue(self, value=2):
+        i = 0
+        for a in self._data:
+            i += 1
+            if self._data[i] == value:
+                # i += 1
+                print("wooo")
+            else: 
+                print("gay")
+        i += 1
+        a +=1 
+```
+why does that give me the desired output when it comes
+across the values that match? 
+
+
+``` py
+    def removeValue(self, value=2):
+        i = -1
+        for a in self._data:
+            i += 1
+            if self._data[i] == value:
+                # i += 1
+                print("wooo")
+            else: 
+                print("gay")
+        # i += 1
+        # a +=1
+```
+
+``` py
+    def removeValue(self, value=2):
+        i = -1
+        for a in self._data:
+            i += 1
+            if self._data[i] == value:
+                print("wooo")
+                self._data[i] = 0
+                v = self._data[i+1]
+                self._data[i] = v
+                self._data[i+1] = 0 
+                break
+            else: 
+                print("gay")
+```
+this works... it does, but uhm... i think there must be some 
+better way of solving it. Right now im way too stubborn to 
+ask AI however, so im just gonna roll with it. 

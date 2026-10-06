@@ -44,30 +44,31 @@ class ArrayList:
         else: 
             print("there are is no value there to pop my friend")
         
-    def removeValue(self, value):
-        # takes away first match of "value"
-        pass 
+    def removeValue(self, value=2):
+        i = -1
+        for a in self._data:
+            i += 1
+            if self._data[i] == value:
+                print("wooo")
+                self._data[i] = 0
+                v = self._data[i+1]
+                self._data[i] = v
+                self._data[i+1] = 0 
+                break
+            else: 
+                print("gay")
             
     def __str__(self): 
         # returns string representation of list, i.e [1, 2, 3]
         return f"{self._data}"
     
 a = ArrayList()
-# a.appendValue(4)
-# a.appendValue(5)
-# a.appendValue(3)
-# a.appendValue(4)
-# print(a)
-# a.appendValue(7) -> list reached limit yippie works 
+a.appendValue(4)
+a.appendValue(4)
+a.appendValue(2)
+a.appendValue(2)
+print(a)
 
-# a.setValue(0, 9)
+a.removeValue()
+print(a)
 
-# print(a.ArrSize())
-# print(a.getValue(0))
-# print(a)
-# print(a.Arr_is_empty())
-# a.popValue()
-# print(a)
-
-# a.removeValue(5)
-# print(a)
