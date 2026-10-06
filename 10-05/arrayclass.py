@@ -1,5 +1,5 @@
 class ArrayList: 
-    def __init__(self, initial_capacity=4):
+    def __init__(self, initial_capacity=5):
         self._capacity = initial_capacity
         self._size = 0 
         self._data = [None] * self._capacity
@@ -44,19 +44,16 @@ class ArrayList:
         else: 
             print("there are is no value there to pop my friend")
         
-    def removeValue(self, value=2):
-        i = -1
-        for a in self._data:
-            i += 1
-            if self._data[i] == value:
-                print("wooo")
-                self._data[i] = 0
-                v = self._data[i+1]
-                self._data[i] = v
-                self._data[i+1] = 0 
-                break
-            else: 
-                print("gay")
+    def removeValue(self, value):
+        for i in range(self._size): 
+            if self._data[i] == value: 
+                for j in range(i, self._size - 1): 
+                    self._data[j] = self._data[j+1]
+                self._data[self._size - 1] = None 
+                self._size -= 1 
+                print(f"value {value} removed")
+                return 
+        print("Value not found in the list")
             
     def __str__(self): 
         # returns string representation of list, i.e [1, 2, 3]
@@ -69,6 +66,7 @@ a.appendValue(2)
 a.appendValue(2)
 print(a)
 
-a.removeValue()
+a.removeValue(2)
 print(a)
+
 

@@ -105,6 +105,28 @@ def appendValue(self, value):
         empty_index = self._size
         self._data[empty_index] = value
         self._size += 1
+
+
+def removeValue(self, value):
+        # 1. Loop only through the active elements
+        for i in range(self._size):
+            if self._data[i] == value:
+                
+                # 2. Shift ALL elements that come after 'i' one step to the left
+                for j in range(i, self._size - 1):
+                    self._data[j] = self._data[j + 1]
+                
+                # 3. Clear out the leftover duplicate at the very end of the active array
+                self._data[self._size - 1] = None
+                
+                # 4. Decrease the size counter
+                self._size -= 1
+                
+                print(f"Value {value} removed.")
+                return # Exit the function completely since we found and removed it
+        
+        # If the loop finishes without hitting 'return', the value wasn't there
+        print("Value not found in the list.")
 ```
 
 ## NOTES 
@@ -218,3 +240,23 @@ across the values that match?
 this works... it does, but uhm... i think there must be some 
 better way of solving it. Right now im way too stubborn to 
 ask AI however, so im just gonna roll with it. 
+
+
+``` py
+    def removeValue(self, value):
+        try: 
+            i = -1
+            for a in self._data:
+                i += 1
+                if self._data[i] == value:
+                    print("wooo")
+                    self._data[i] = None
+                    v = self._data[i+1]
+                    self._data[i] = v
+                    self._data[i+1] = None
+                    break
+                else: 
+                    print("gay")
+        except: 
+            print("nooooo") 
+```
