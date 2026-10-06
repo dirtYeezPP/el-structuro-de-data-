@@ -132,4 +132,17 @@ def appendValue(self, value):
             print("cant add any more of those uncle")
         if self._size == self._capacity:
             print("the list has reached its limit")
+
+
+
+	index = 0 
+        for i in self._data: 
+            if self._data[index] == value: 
+                self._data[index] = self._data[-2]
+                self._data[-2] = None 
+                i += 1
+                # index += 1
+            else: 
+                print("gaeee")
+        # index += 1 
 ```

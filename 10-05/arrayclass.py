@@ -6,7 +6,7 @@ class ArrayList:
     
     def _resize(self, new_capacity):
         # internal method to change size of "array"
-        pass 
+        pass       
     
     def appendValue(self, value):
         try: 
@@ -14,13 +14,14 @@ class ArrayList:
             self._data[empty_index] = value 
             self._size += 1 # the increase mirrors which indices have values already
         except IndexError: 
-            print("The list has reached its limit.")
+            print("The list has reached its limit.") # will be replaced later 
         
     def getValue(self, index):
         return f" value on index {index} is {self._data[index]}"
 
     def setValue(self, index, value): 
         self._data[index] = value 
+        print(f"value {value} on index {index} set")
 
     
     def ArrSize(self): 
@@ -31,28 +32,42 @@ class ArrayList:
     
     def insertValue(self, index, value):
         # inserts element in specific index 
+        # 1. skapa en ny större array - om arrayen är full 
+        # 2. loopa igenom men byt värdet av det angivna indexet 
+        # 3. flytta de värden som fanns ett snepp 
         pass 
+    
     def popValue(self, index=-1):
-        # removes and returns an element on specified index 
-        pass 
+        if self._data[index] != None: 
+            self._data[index] = None 
+            print(f"Value has been popped on index {index}")
+        else: 
+            print("there are is no value there to pop my friend")
+        
     def removeValue(self, value):
         # takes away first match of "value"
         pass 
+            
     def __str__(self): 
         # returns string representation of list, i.e [1, 2, 3]
         return f"{self._data}"
     
 a = ArrayList()
-a.appendValue(4)
-a.appendValue(5)
-a.appendValue(3)
-a.appendValue(4)
-print(a)
+# a.appendValue(4)
+# a.appendValue(5)
+# a.appendValue(3)
+# a.appendValue(4)
+# print(a)
 # a.appendValue(7) -> list reached limit yippie works 
 
-a.setValue(0, 9)
+# a.setValue(0, 9)
 
-print(a.ArrSize())
-print(a.getValue(0))
-print(a)
-print(a.Arr_is_empty())
+# print(a.ArrSize())
+# print(a.getValue(0))
+# print(a)
+# print(a.Arr_is_empty())
+# a.popValue()
+# print(a)
+
+# a.removeValue(5)
+# print(a)
