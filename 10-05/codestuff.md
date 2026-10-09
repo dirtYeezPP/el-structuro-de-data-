@@ -259,4 +259,101 @@ ask AI however, so im just gonna roll with it.
                     print("gay")
         except: 
             print("nooooo") 
+
+def removeValue(self, value):
+        # 1. Loop only through the active elements
+        for i in range(self._size):
+            if self._data[i] == value:
+                
+                # 2. Shift ALL elements that come after 'i' one step to the left
+                for j in range(i, self._size - 1):
+                    self._data[j] = self._data[j + 1]
+                
+                # 3. Clear out the leftover duplicate at the very end of the active array
+                self._data[self._size - 1] = None
+                
+                # 4. Decrease the size counter
+                self._size -= 1
+                
+                print(f"Value {value} removed.")
+                return # Exit the function completely since we found and removed it
+        
+        # If the loop finishes without hitting 'return', the value wasn't there
+        print("Value not found in the list.")
+
+
+
+    def insertValue(self, index, value):
+        
+        for i in range(self._size):
+            if self._data[index] != None: 
+                for j in range(i, self._size + 1):
+                    self._data[j] = self._data[j-1]
+                self._data[index] = value 
+                self._size += 1
+                print("im gay?")
+                return 
+            print("no youre gay")
+        
+        # inserts element in specific index 
+        # 2. loopa igenom men byt värdet av det angivna indexet 
+        # 3. flytta de värden som fanns ett snepp 
+
+a.appendValue(4)
+a.appendValue(4)
+a.appendValue(2)
+a.appendValue(2)
+print(a)
+
+a.removeValue(2)
+print(a)
+
+a.insertValue(1, 2)
+print(a)
+a.insertValue(2, 9)
+print(a)
+
+
+
+    def insertValue(self, index, value):
+        for i in range(self._size):
+            print("gg freaking ez")
+            if self._data[i] != None: 
+                for j in range(index, self._size + 1):
+                    self._data[j] = self._data[j + 1]
+                    
+                self._data[index] = value
+                self._size += 1
+                print("im gay?")
+                return 
+            print("no you're gay")
+        
+        # inserts element in specific index 
+        # 2. loopa igenom men byt värdet av det angivna indexet 
+        # 3. flytta de värden som fanns ett snepp 
+
+
+                for i in range(self._size):
+            for j in range(i, self._size): 
+                self._data[i] = self._data[i + 1]
+                    
+            self._data[index] = value
+            self._size += 1
+            print("im gay?")
+            return 
+        
+        # inserts element in specific index 
+        # 2. loopa igenom men byt värdet av det angivna indexet 
+        # 3. flytta de värden som fanns ett snepp 
+
+     
+        # v = self._data[index] 
+        # self._data[index+1] = v
+        for j in range(index, self._size - 1):
+            self._data[j + 1] = self._data[j] 
+            # self._size += 1
+            # j += 1
+            
+        self._data[index] = value 
+        self._size += 1
 ```

@@ -1,5 +1,5 @@
 class ArrayList: 
-    def __init__(self, initial_capacity=5):
+    def __init__(self, initial_capacity=6):
         self._capacity = initial_capacity
         self._size = 0 
         self._data = [None] * self._capacity
@@ -31,11 +31,17 @@ class ArrayList:
         return self._size == 0
     
     def insertValue(self, index, value):
-        # inserts element in specific index 
-        # 1. skapa en ny större array - om arrayen är full 
-        # 2. loopa igenom men byt värdet av det angivna indexet 
-        # 3. flytta de värden som fanns ett snepp 
-        pass 
+        for i in range(self._size): 
+            if i == index: 
+                for j in range(i, self._size - 1):
+                    self._data[j + 1] = self._data[j]
+                    # self._data[self._size-1] = self._data[j-1]
+                self._data[index] = value 
+                self._size += 1
+                print("gay")
+                return 
+        print("No") 
+        
     
     def popValue(self, index=-1):
         if self._data[index] != None: 
@@ -60,13 +66,12 @@ class ArrayList:
         return f"{self._data}"
     
 a = ArrayList()
+a.appendValue(1)
+a.appendValue(3)
+a.appendValue(6)
 a.appendValue(4)
-a.appendValue(4)
-a.appendValue(2)
-a.appendValue(2)
+a.appendValue(0)
 print(a)
 
-a.removeValue(2)
+a.insertValue(2, 7)
 print(a)
-
-
