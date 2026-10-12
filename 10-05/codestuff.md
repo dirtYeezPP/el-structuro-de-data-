@@ -357,3 +357,177 @@ print(a)
         self._data[index] = value 
         self._size += 1
 ```
+
+
+``` py
+def popValue(self, index=-1):
+        # If the array is empty, there's nothing to pop
+        if self._size == 0:
+            print("There is no value there to pop my friend")
+            return None
+
+        # If no index is provided (or -1), default to the very last valid element
+        if index == -1:
+            index = self._size - 1
+
+        # Check if the index is valid
+        if index < 0 or index >= self._size:
+            print("Index out of bounds")
+            return None
+
+        # Save the value so we can return it at the end
+        popped_value = self._data[index]
+
+        # Shift elements LEFT to fill the gap (your logic here was perfect!)
+        for j in range(index, self._size - 1): 
+            self._data[j] = self._data[j+1]
+
+        # Clean up the end of the list and update the size
+        self._data[self._size - 1] = None
+        self._size -= 1 
+
+        print(f"Value {popped_value} has been popped on index {index}")
+        return popped_value
+
+def insertValue(self, index, value):
+        # Check if we have room to insert
+        if self._size >= self._capacity:
+            print("Array is full! Cannot insert.")
+            return
+
+        # Check if the index is valid (can be equal to _size if inserting at the very end)
+        if index < 0 or index > self._size:
+            print("Invalid index!")
+            return 
+        
+        # Shift elements RIGHT, starting from the end and stepping backwards (-1)
+        for j in range(self._size, index, -1):
+            self._data[j] = self._data[j - 1]
+        
+        # Now the slot at 'index' is safely open. Insert the new value.
+        self._data[index] = value 
+        self._size += 1
+        
+        print(f"Inserted {value} at index {index}")
+
+```
+
+
+
+``` py 
+def popValue(self, index=-1):
+        # Check if the list is completely empty
+        if self._size == 0:
+            print("There is no value there to pop my friend")
+            return None
+            
+        # If the user relies on the default -1, translate it to the last active index
+        if index == -1:
+            index = self._size - 1
+            
+        # Bounds checking instead of checking for != None
+        if index < 0 or index >= self._size:
+            print("aaaaaaa - Index out of bounds")
+            return None
+            
+        # Save the value before we overwrite it, so we can return it
+        popped_value = self._data[index]
+        
+        # Shift elements to the left (your original logic here was perfect!)
+        for j in range(index, self._size - 1): 
+            self._data[j] = self._data[j+1]
+            
+        # Clean up the last element and shrink the size
+        self._data[self._size - 1] = None
+        self._size -= 1 
+        
+        print(f"Value {popped_value} has been popped on index {index}")
+        return popped_value
+
+
+
+def insertValue(self, index, value):
+        # 1. Check if there is room in the array
+        if self._size >= self._capacity:
+            print("No") # Array is full
+            return
+            
+        # 2. Ensure the index is valid (inserting at the very end is allowed)
+        if index < 0 or index > self._size:
+            print("Invalid index")
+            return
+            
+        # 3. Shift elements to the right. 
+        # MUST iterate backwards (from size down to index) to avoid overwriting!
+        for j in range(self._size, index, -1):
+            self._data[j] = self._data[j - 1]
+            
+        # 4. Insert the value into the gap we just created
+        self._data[index] = value
+        self._size += 1
+        print("Value inserted successfully")
+
+```
+
+
+``` py
+
+        elif index != -1:
+            index = index 
+            if self._data[index] != None: 
+                for j in range(index, self._size - 1): 
+                    self._data[j] = self._data[j+1]
+                self._data[self._size-1] = None
+                self._size -= 1 
+                print("gay111")
+                return 
+            else: 
+                print("aaaaaaa")
+
+    def insertValue(self, index, value):
+        for i in range(self._capacity): 
+            if i == index: 
+                for j in range(i, self._size):
+                    # self._data[j + 1] = self._data[j]
+                    self._data[self._size] = self._data[j - 1]
+                self._data[index] = value 
+                self._size += 1
+                print("gay")
+                return 
+        print("No") 
+```
+
+
+``` py 
+        if self._size >= self._capacity: 
+            print("arr full")
+        
+        if index > self._size: 
+            print("invalid")
+            
+        for j in range(self._size, index, -1): 
+            self._data[j] = self._data[j - 1]
+            
+        self._data[index] = value 
+        self._size += 1 
+        print(f"inserted {value} on index {index}")
+```
+
+``` py
+if self._size == 0: 
+            print("no values exist")
+        if index == -1:
+            index = self._size - 1 
+        if index > self._size: 
+            print("I like em big, i like me chönkeh")
+        
+        pv = self._data[index]
+        for j in range(index, self._size - 1):
+            self._data[j] = self._data[j + 1]
+        
+        self._data[self._size - 1] = None 
+        self._size -= 1 
+        
+        print(f"value {pv} has been popped on index {index}")
+         
+```

@@ -31,35 +31,44 @@ class ArrayList:
         return self._size == 0
     
     def insertValue(self, index, value):
-        for i in range(self._size): 
-            if i == index: 
-                for j in range(i, self._size - 1):
-                    self._data[j + 1] = self._data[j]
-                    # self._data[self._size-1] = self._data[j-1]
-                self._data[index] = value 
-                self._size += 1
-                print("gay")
-                return 
-        print("No") 
-        
+        try: 
+            for j in range(self._size, index, -1): 
+                self._data[j] = self._data[j - 1]
+            self._data[index] = value 
+            self._size += 1 
+            print(f"value {value} on index {index}")
+        except IndexError:
+            print("You cannot do this")
     
     def popValue(self, index=-1):
-        if self._data[index] != None: 
-            self._data[index] = None 
-            print(f"Value has been popped on index {index}")
-        else: 
-            print("there are is no value there to pop my friend")
+        try: 
+            if self._size == 0: 
+                print("arr empty")
+                
+            if index == -1: 
+                index = self._size - 1
+            
+            pv = self._data[index] 
+            for j in range(index, self._size, -1):
+                self._data[j] = self._data[j + 1]
+            self._data[self._size - 1] = None 
+            self._size -= 1 
+            print(f"value {pv} popped on index {index}")
+        except IndexError: 
+            print("index out of range my friendo")        
         
     def removeValue(self, value):
-        for i in range(self._size): 
-            if self._data[i] == value: 
-                for j in range(i, self._size - 1): 
-                    self._data[j] = self._data[j+1]
-                self._data[self._size - 1] = None 
-                self._size -= 1 
-                print(f"value {value} removed")
-                return 
-        print("Value not found in the list")
+        try: 
+            for i in range(self._size): 
+                if self._data[i] == value: 
+                    for j in range(i, self._size - 1): 
+                        self._data[j] = self._data[j+1]
+                    self._data[self._size - 1] = None 
+                    self._size -= 1 
+                    print(f"value {value} removed")
+            print("Value not found in the list")
+        except: 
+            print("nopie dopie")
             
     def __str__(self): 
         # returns string representation of list, i.e [1, 2, 3]
@@ -73,5 +82,14 @@ a.appendValue(4)
 a.appendValue(0)
 print(a)
 
-a.insertValue(2, 7)
+a.appendValue(5)
+print(a)
+
+a.popValue()
+print(a)
+a.popValue(7)
+
+# a.insertValue(0, 43)
+
+# a.insertValue(2, 7)
 print(a)
