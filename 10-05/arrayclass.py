@@ -3,6 +3,11 @@ class ArrayList:
         self._capacity = initial_capacity
         self._size = 0 
         self._data = [None] * self._capacity
+       
+        
+    def _resize(self, new_capacity):
+        pass 
+
         
     def appendValue(self, value):
         try: 
@@ -10,10 +15,7 @@ class ArrayList:
             self._data[empty_index] = value 
             self._size += 1 # the increase mirrors which indices have values already
         except IndexError: 
-            print("The list has reached its limit.") # will be replaced later 
-    
-    def _resize(self, new_capacity):
-        pass 
+            print("The list has reached its limit.") # will be replaced later  
     
     def getValue(self, index):
         return f" value on index {index} is {self._data[index]}"
