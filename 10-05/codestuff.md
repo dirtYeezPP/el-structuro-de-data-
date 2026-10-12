@@ -531,3 +531,20 @@ if self._size == 0:
         print(f"value {pv} has been popped on index {index}")
          
 ```
+
+
+``` py
+        # internal method to change size of "array"
+        # self._capacity = new_capacity
+        newA = ArrayList(new_capacity)
+        i = 0 
+        for i in self._data:
+            if self._data[i] != None: 
+                newA.appendValue(self._data[i]) 
+                # newA = self._data 
+                i += 1
+                if i == new_capacity: 
+                    break 
+            else: 
+                newA[i] = 0 
+```

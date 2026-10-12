@@ -3,11 +3,7 @@ class ArrayList:
         self._capacity = initial_capacity
         self._size = 0 
         self._data = [None] * self._capacity
-    
-    def _resize(self, new_capacity):
-        # internal method to change size of "array"
-        pass       
-    
+        
     def appendValue(self, value):
         try: 
             empty_index = self._size  
@@ -15,7 +11,10 @@ class ArrayList:
             self._size += 1 # the increase mirrors which indices have values already
         except IndexError: 
             print("The list has reached its limit.") # will be replaced later 
-        
+    
+    def _resize(self, new_capacity):
+        pass 
+    
     def getValue(self, index):
         return f" value on index {index} is {self._data[index]}"
 
@@ -71,7 +70,6 @@ class ArrayList:
             print("nopie dopie")
             
     def __str__(self): 
-        # returns string representation of list, i.e [1, 2, 3]
         return f"{self._data}"
     
 a = ArrayList()
@@ -92,4 +90,7 @@ a.popValue(7)
 # a.insertValue(0, 43)
 
 # a.insertValue(2, 7)
+print(a)
+
+a._resize(7)
 print(a)
