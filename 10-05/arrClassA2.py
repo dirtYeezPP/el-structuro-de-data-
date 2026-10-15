@@ -86,11 +86,12 @@ a.yeet_in(9)
 a.yeet_in(24)
 
 
-a.chunk_level()
+print(a.chunk_level())
 # print(a)
 
 # a.chunk_level()
 a.hunt_n_nuke(11)
+print(a.is_chunky())
 # print(a)
 
 # a.yoink()
