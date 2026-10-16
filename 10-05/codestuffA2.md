@@ -156,129 +156,6 @@ print(a)
 ```
 
 
-``` py
-class ArrayList:
-    def __init__(self, initial_capacity=6):
-        self._capacity = initial_capacity
-        self._size = 0
-        self._data = [None] * self._capacity
-
-    def _resize(self, new_capacity):
-        new_data = [None] * new_capacity
-        for i in range(self._size):
-            new_data[i] = self._data[i]
-        self._data = new_data
-        self._capacity = new_capacity
-
-    def appendValue(self, value):
-        if self._size == self._capacity:
-            self._resize(2 * self._capacity)
-        self._data[self._size] = value
-        self._size += 1
-
-    def getValue(self, index):
-        if not (0 <= index < self._size):
-            raise IndexError("Index out of bounds")
-        return self._data[index]
-
-    def setValue(self, index, value):
-        if not (0 <= index < self._size):
-            raise IndexError("Index out of bounds")
-        self._data[index] = value
-
-    def ArrSize(self):
-        return self._size
-
-    def Arr_is_empty(self):
-        return self._size == 0
-
-    def insertValue(self, index, value):
-        if not (0 <= index <= self._size):
-            raise IndexError("Index out of bounds")
-
-        if self._size == self._capacity:
-            self._resize(2 * self._capacity)
-
-        for j in range(self._size, index, -1):
-            self._data[j] = self._data[j - 1]
-
-        self._data[index] = value
-        self._size += 1
-
-    def popValue(self, index=-1):
-        if self._size == 0:
-            raise IndexError("pop from empty list")
-
-        if index == -1:
-            index = self._size - 1
-
-        if not (0 <= index < self._size):
-            raise IndexError("Index out of bounds")
-
-        removed_val = self._data[index]
-
-        for j in range(index, self._size - 1):
-            self._data[j] = self._data[j + 1]
-
-        self._data[self._size - 1] = None
-        self._size -= 1
-        return removed_val
-
-    def removeValue(self, value):
-        for i in range(self._size):
-            if self._data[i] == value:
-                self.popValue(i)
-                return
-        raise ValueError(f"{value} not in list")
-
-    def __str__(self):
-        # Displays only the active values
-        return f"{[self._data[i] for i in range(self._size)]}" 
-```
-
-``` py 
-def _resize(self, new_capacity):
-    new_data = [None] * new_capacity
-    # Only copy the elements that actually exist!
-    for i in range(self._size):
-        new_data[i] = self._data[i]
-    self._data = new_data
-    self._capacity = new_capacity
-
-
-def yoink(self, index=-1):
-    if self._size == 0:
-        raise IndexError("Nothing to yoink!")
-
-    # Resolve negative index inline
-    if index < 0:
-        index += self._size
-    if not (0 <= index < self._size):
-        raise IndexError("Out of bounds")
-
-    popped_val = self._data[index]
-
-    # Shift elements left
-    for j in range(index, self._size - 1):
-        self._data[j] = self._data[j + 1]
-
-    self._data[self._size - 1] = None
-    self._size -= 1
-
-    # --- SHRINK CHECK ---
-    # 1. Has size dropped to 1/4 of capacity?
-    # 2. Don't shrink below a minimum sensible capacity (e.g., 4 or 6)
-    if self._size > 0 and self._size <= self._capacity // 4:
-        min_capacity = 4
-        new_cap = max(self._capacity // 2, min_capacity)
-        if new_cap != self._capacity:
-            self._resize(new_cap)
-
-    return popped_val
-
-```
-
-
 
 
 
@@ -340,7 +217,6 @@ class Chonk:
         self._data[self._size - 1] = None 
         self._size -= 1 
         
-        # Shrink if mostly empty (standard dynamic array optimization)
         if self._size > 0 and self._size <= self._capacity // 4:
             self._resize(self._capacity // 2)
             
