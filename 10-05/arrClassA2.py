@@ -18,6 +18,7 @@ class Chonk:
     def _check_n_bulk(self):
         if self._size == self._capacity: 
             self._resize(self._capacity * 2)
+            print("rawr")
              
     def _check_n_cut(self): 
         if self._size > 0 and self._size <= self._capacity // 4: 
@@ -47,7 +48,6 @@ class Chonk:
         self._size += 1 
         return value
 
-    
     def yoink(self, index=-1):
         # pop 
         if self._size == 0:
@@ -64,8 +64,6 @@ class Chonk:
         self._size -= 1 
         
         self._check_n_cut()
-         
-        print(yoinked)
         return yoinked 
             
     def hunt_n_nuke(self, value):
@@ -86,12 +84,38 @@ class Chonk:
         # print(self._size != 0)
         return self._size != 0
     
-    def chunk_level(self):
+    def chunk_size(self):
         # size 
         # print(self._size)
         return self._size  
-        
+    
     def __str__(self): 
         return f"{[self._data[i] for i in range(self._size)]}"
     
 
+a = Chonk()
+a.yeet_in(2)
+a.yeet_in(54)
+a.yeet_in(9)
+a.yeet_in(24)
+
+a.chunk_size()
+a.is_chunky()
+
+print(a)
+a.yeet_in(445)
+a.yeet_in(134)
+
+a.scoot_over(3, 88)
+print(a)
+
+
+# a.yoink()
+a.yoink(-2)
+a.hunt_n_nuke(3)
+print(a)
+
+a.hunt_n_nuke(88)
+# a.yoink()
+a.yoink()
+print(a)

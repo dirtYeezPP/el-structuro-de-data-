@@ -270,3 +270,27 @@ a.yoink()
 a.yoink()
 print(a)
 ```
+
+``` 
+Extrauppgifter list-klass
+Skapa stöd för "hakparantessyntax", dvs:
+minLista[2] = "Hej"
+och 
+print(minLista[2])
+Skapa också stöd för len() funktionen så att
+print(len(minLista)) skriver ut antal element.
+ 
+Tips kolla på:
+__get__item()
+__set__item()
+__len__()
+ 
+ 
+```
+
+``` py 
+    def chunk_length(self, list): 
+        for i in range(list): 
+            i += 1 
+        print(i)
+```
