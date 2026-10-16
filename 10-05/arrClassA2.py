@@ -14,11 +14,18 @@ class Chonk:
     def _check_chonk_index(self, index): 
         if index > self._size: 
             raise IndexError("Missing correspondance of chonk level")
+        
+    def _check_n_bulk(self):
+        if self._size == self._capacity: 
+            self._resize(self._capacity * 2)
+             
+    def _check_n_cut(self): 
+        if self._size > 0 and self._size <= self._capacity // 4: 
+            self._resize(self._capacity//2)
     
     def yeet_in(self, value):
         # append 
-        if self._size == self._capacity: 
-            self._resize(self._capacity * 2) 
+        self._check_n_bulk()
             
         self._data[self._size] = value 
         self._size += 1 
@@ -26,24 +33,18 @@ class Chonk:
     def peek(self, index):
         # get 
         self._check_chonk_index(index)
-    
-        print(self._data[index])
+        print(self._data[index] if self._data[index] != None else 'No value on given index')
         return self._data[index]
-        
     
     def scoot_over(self, index, value):
         # insert 
-        if index > self._size: 
-            raise IndexError("Missing correspondance of chonk level")
-        
-        if self._size == self._capacity:
-            self._resize(self._capacity * 2)
+        self._check_chonk_index(index)
+        self._check_n_bulk()
         
         for j in range(self._size, index, -1):
             self._data[j] = self._data[j-1]
         self._data[index] = value 
         self._size += 1 
-        print(value)
         return value
 
     
@@ -53,8 +54,7 @@ class Chonk:
             raise IndexError("Nothing to yoink from Chonky list")
         if index == -1:
             index = self._size - 1 
-        if index > self._size: 
-            raise IndexError("Missing correspondance of Chonk level")
+        self._check_chonk_index(index)
 
         yoinked = self._data[index]
         for j in range(index, self._size - 1):
@@ -63,8 +63,7 @@ class Chonk:
         self._data[self._size - 1] = None
         self._size -= 1 
         
-        if self._size > 0 and self._size <= self._capacity // 4: 
-            self._resize(self._capacity//2)
+        self._check_n_cut()
          
         print(yoinked)
         return yoinked 
@@ -89,19 +88,10 @@ class Chonk:
     
     def chunk_level(self):
         # size 
-        print(self._size)
+        # print(self._size)
         return self._size  
         
     def __str__(self): 
         return f"{[self._data[i] for i in range(self._size)]}"
     
-a = Chonk()
-a.yeet_in(2)
-a.yeet_in(54)
-a.yeet_in(9)
-a.yeet_in(24)
 
-a.is_chunky()
-
-a.peek(2)
-# a.peek(23)

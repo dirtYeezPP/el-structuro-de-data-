@@ -241,4 +241,32 @@ class Chonk:
         
     def __str__(self): 
         return f"{[self._data[i] for i in range(self._size)]}"
+
+
+a = Chonk()
+a.yeet_in(2)
+a.yeet_in(54)
+a.yeet_in(9)
+a.yeet_in(24)
+
+a.chunk_level()
+a.is_chunky()
+
+print(a)
+a.yeet_in(445)
+a.yeet_in(134)
+
+a.scoot_over(3, 88)
+print(a)
+
+
+a.yoink()
+a.yoink(-2)
+a.hunt_n_nuke(3)
+print(a)
+
+a.hunt_n_nuke(88)
+a.yoink()
+a.yoink()
+print(a)
 ```
