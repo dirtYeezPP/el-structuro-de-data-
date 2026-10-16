@@ -10,8 +10,13 @@ class Chonk:
             new[i] = self._data[i]
         self._data = new 
         self._capacity = new_capacity
+        
+    def _check_chonk_index(self, index): 
+        if index > self._size: 
+            raise IndexError("Missing correspondance of chonk level")
     
     def yeet_in(self, value):
+        # append 
         if self._size == self._capacity: 
             self._resize(self._capacity * 2) 
             
@@ -19,13 +24,15 @@ class Chonk:
         self._size += 1 
     
     def peek(self, index):
-        if index >= self._size: 
-            raise IndexError("Missing correspondance of chonk level")
-        
+        # get 
+        self._check_chonk_index(index)
+    
+        print(self._data[index])
         return self._data[index]
+        
     
     def scoot_over(self, index, value):
-        
+        # insert 
         if index > self._size: 
             raise IndexError("Missing correspondance of chonk level")
         
@@ -36,10 +43,12 @@ class Chonk:
             self._data[j] = self._data[j-1]
         self._data[index] = value 
         self._size += 1 
+        print(value)
         return value
 
     
     def yoink(self, index=-1):
+        # pop 
         if self._size == 0:
             raise IndexError("Nothing to yoink from Chonky list")
         if index == -1:
@@ -57,9 +66,11 @@ class Chonk:
         if self._size > 0 and self._size <= self._capacity // 4: 
             self._resize(self._capacity//2)
          
+        print(yoinked)
         return yoinked 
             
     def hunt_n_nuke(self, value):
+        # remove 
         for i in range(self._size):
             if self._data[i] == value: 
                 for j in range(i, self._size - 1):
@@ -71,9 +82,14 @@ class Chonk:
         return None 
                     
     def is_chunky(self):
+        # is empty 
+        # print(True if self._size != 0 else False)
+        # print(self._size != 0)
         return self._size != 0
     
     def chunk_level(self):
+        # size 
+        print(self._size)
         return self._size  
         
     def __str__(self): 
@@ -85,19 +101,7 @@ a.yeet_in(54)
 a.yeet_in(9)
 a.yeet_in(24)
 
+a.is_chunky()
 
-print(a.chunk_level())
-# print(a)
-
-# a.chunk_level()
-a.hunt_n_nuke(11)
-print(a.is_chunky())
-# print(a)
-
-# a.yoink()
-# print(a)
-# a.yoink(1)
-# print(a)
-
-# a.scoot_over(2, 8)
-# print(a)
+a.peek(2)
+# a.peek(23)

@@ -81,56 +81,6 @@ class ArrayList:
     	pass 
 ```
 
-## AI HELP 
-``` py
-# alt 1
-def appendValue(self, value):
-        index = 0  # Start our manual index at 0
-        
-        for current_value in self._data:
-            if current_value == None:  
-                # We found an empty spot!
-                self._data[index] = value 
-                self._size += 1
-                break  # Stop searching once we've appended
-            
-            # If it wasn't None, we move our manual index up by 1 and check the next item
-            index += 1
-
-# alt 2
-def appendValue(self, value):
-        # We can just jump directly to the first empty index using self._size!
-        # (Assuming self._data still has empty None slots left)
-        
-        empty_index = self._size
-        self._data[empty_index] = value
-        self._size += 1
-
-
-def removeValue(self, value):
-        # 1. Loop only through the active elements
-        for i in range(self._size):
-            if self._data[i] == value:
-                
-                # 2. Shift ALL elements that come after 'i' one step to the left
-                for j in range(i, self._size - 1):
-                    self._data[j] = self._data[j + 1]
-                
-                # 3. Clear out the leftover duplicate at the very end of the active array
-                self._data[self._size - 1] = None
-                
-                # 4. Decrease the size counter
-                self._size -= 1
-                
-                print(f"Value {value} removed.")
-                return # Exit the function completely since we found and removed it
-        
-        # If the loop finishes without hitting 'return', the value wasn't there
-        print("Value not found in the list.")
-```
-
-## NOTES 
-
 ## UTKAST AV KOD 
 ``` py
     def appendValue(self, value):
@@ -237,10 +187,6 @@ across the values that match?
             else: 
                 print("gay")
 ```
-this works... it does, but uhm... i think there must be some 
-better way of solving it. Right now im way too stubborn to 
-ask AI however, so im just gonna roll with it. 
-
 
 ``` py
     def removeValue(self, value):
@@ -261,24 +207,15 @@ ask AI however, so im just gonna roll with it.
             print("nooooo") 
 
 def removeValue(self, value):
-        # 1. Loop only through the active elements
         for i in range(self._size):
             if self._data[i] == value:
                 
-                # 2. Shift ALL elements that come after 'i' one step to the left
                 for j in range(i, self._size - 1):
                     self._data[j] = self._data[j + 1]
                 
-                # 3. Clear out the leftover duplicate at the very end of the active array
                 self._data[self._size - 1] = None
-                
-                # 4. Decrease the size counter
                 self._size -= 1
-                
                 print(f"Value {value} removed.")
-                return # Exit the function completely since we found and removed it
-        
-        # If the loop finishes without hitting 'return', the value wasn't there
         print("Value not found in the list.")
 
 
@@ -361,116 +298,25 @@ print(a)
 
 ``` py
 def popValue(self, index=-1):
-        # If the array is empty, there's nothing to pop
         if self._size == 0:
             print("There is no value there to pop my friend")
-            return None
 
-        # If no index is provided (or -1), default to the very last valid element
         if index == -1:
             index = self._size - 1
 
-        # Check if the index is valid
         if index < 0 or index >= self._size:
-            print("Index out of bounds")
-            return None
+            print("Index gay")
 
-        # Save the value so we can return it at the end
+
         popped_value = self._data[index]
-
-        # Shift elements LEFT to fill the gap (your logic here was perfect!)
         for j in range(index, self._size - 1): 
             self._data[j] = self._data[j+1]
 
-        # Clean up the end of the list and update the size
         self._data[self._size - 1] = None
         self._size -= 1 
 
         print(f"Value {popped_value} has been popped on index {index}")
-        return popped_value
 
-def insertValue(self, index, value):
-        # Check if we have room to insert
-        if self._size >= self._capacity:
-            print("Array is full! Cannot insert.")
-            return
-
-        # Check if the index is valid (can be equal to _size if inserting at the very end)
-        if index < 0 or index > self._size:
-            print("Invalid index!")
-            return 
-        
-        # Shift elements RIGHT, starting from the end and stepping backwards (-1)
-        for j in range(self._size, index, -1):
-            self._data[j] = self._data[j - 1]
-        
-        # Now the slot at 'index' is safely open. Insert the new value.
-        self._data[index] = value 
-        self._size += 1
-        
-        print(f"Inserted {value} at index {index}")
-
-```
-
-
-
-``` py 
-def popValue(self, index=-1):
-        # Check if the list is completely empty
-        if self._size == 0:
-            print("There is no value there to pop my friend")
-            return None
-            
-        # If the user relies on the default -1, translate it to the last active index
-        if index == -1:
-            index = self._size - 1
-            
-        # Bounds checking instead of checking for != None
-        if index < 0 or index >= self._size:
-            print("aaaaaaa - Index out of bounds")
-            return None
-            
-        # Save the value before we overwrite it, so we can return it
-        popped_value = self._data[index]
-        
-        # Shift elements to the left (your original logic here was perfect!)
-        for j in range(index, self._size - 1): 
-            self._data[j] = self._data[j+1]
-            
-        # Clean up the last element and shrink the size
-        self._data[self._size - 1] = None
-        self._size -= 1 
-        
-        print(f"Value {popped_value} has been popped on index {index}")
-        return popped_value
-
-
-
-def insertValue(self, index, value):
-        # 1. Check if there is room in the array
-        if self._size >= self._capacity:
-            print("No") # Array is full
-            return
-            
-        # 2. Ensure the index is valid (inserting at the very end is allowed)
-        if index < 0 or index > self._size:
-            print("Invalid index")
-            return
-            
-        # 3. Shift elements to the right. 
-        # MUST iterate backwards (from size down to index) to avoid overwriting!
-        for j in range(self._size, index, -1):
-            self._data[j] = self._data[j - 1]
-            
-        # 4. Insert the value into the gap we just created
-        self._data[index] = value
-        self._size += 1
-        print("Value inserted successfully")
-
-```
-
-
-``` py
 
         elif index != -1:
             index = index 
