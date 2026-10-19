@@ -373,3 +373,5 @@ class C:
 
     x = property(getx, setx, delx, "I'm the 'x' property.")
 ```
+https://docs.python.org/3/tutorial/classes.html
+https://www.quora.com/How-do-I-use-a-class-function-inside-another-class-function-in-Python
