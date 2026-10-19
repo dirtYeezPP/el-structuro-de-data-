@@ -294,3 +294,82 @@ __len__()
             i += 1 
         print(i)
 ```
+
+
+``` py
+from inspect import isclass
+
+def subscribe(obj, x):
+    """Return the result of the expression 'obj[x]'"""
+
+    class_of_obj = type(obj)
+
+    # If the class of obj defines __getitem__,
+    # call class_of_obj.__getitem__(obj, x)
+    if hasattr(class_of_obj, '__getitem__'):
+        return class_of_obj.__getitem__(obj, x)
+
+    # Else, if obj is a class and defines __class_getitem__,
+    # call obj.__class_getitem__(x)
+    elif isclass(obj) and hasattr(obj, '__class_getitem__'):
+        return obj.__class_getitem__(x)
+
+    # Else, raise an exception
+    else:
+        raise TypeError(
+            f"'{class_of_obj.__name__}' object is not subscriptable"
+        )
+```
+https://docs.python.org/3/reference/datamodel.html#object.__getitem__ 
+
+
+https://docs.python.org/3/reference/expressions.html#subscriptions 
+``` py 
+    def __spilled_beans__(self,obj, index):
+        cls_obj = type(obj)
+        return self._data[index]
+```
+
+
+https://stackoverflow.com/questions/67477725/make-class-mutable-by-subscription-or-implement-views
+
+
+https://www.geeksforgeeks.org/python/pubsub-model-in-python/ 
+
+https://snarky.ca/unravelling-subscriptions-in-python/
+ 
+
+
+https://github.com/brettcannon/desugar/blob/ce5e2f418870e9d60595fb05c180099d7f64c328/desugar/operator.py#L338-L361
+
+``` py 
+def __getitem__(container: Any, index: Any, /) -> Any:
+    """Return the item in the container at the specified index."""
+    container_type = type(container)
+    try:
+        getitem_method = debuiltins._mro_getattr(container_type, "__getitem__")
+    except AttributeError:
+        raise TypeError(f"{container_type.__name__!r} object is not subscriptable")
+    return getitem_method(container, index)
+
+
+getitem = __getitem__
+```
+
+https://docs.python.org/3/builtins/functions.html#property
+``` py
+class C:
+    def __init__(self):
+        self._x = None
+
+    def getx(self):
+        return self._x
+
+    def setx(self, value):
+        self._x = value
+
+    def delx(self):
+        del self._x
+
+    x = property(getx, setx, delx, "I'm the 'x' property.")
+```

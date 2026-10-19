@@ -23,6 +23,10 @@ class Chonk:
     def _check_n_cut(self): 
         if self._size > 0 and self._size <= self._capacity // 4: 
             self._resize(self._capacity//2)
+            
+    def __spillbeans(self, index):
+        pass 
+    
     
     def yeet_in(self, value):
         # append 
@@ -88,7 +92,7 @@ class Chonk:
         # size 
         # print(self._size)
         return self._size  
-    
+        
     def __str__(self): 
         return f"{[self._data[i] for i in range(self._size)]}"
     
@@ -119,3 +123,7 @@ a.hunt_n_nuke(88)
 # a.yoink()
 a.yoink()
 print(a)
+
+print(a[2])
+
+
