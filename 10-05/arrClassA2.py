@@ -12,8 +12,11 @@ class Chonk:
         self._capacity = new_capacity
         
     def _check_chonk_index(self, index): 
-        if index > self._size: 
-            raise IndexError("Missing correspondance of chonk level")
+        if index < 0: 
+            index += self._size 
+        if not (0 <= index < self._size): 
+            raise IndexError("Chonk is not that Chonky")
+        return index 
         
     def _check_n_bulk(self):
         if self._size == self._capacity: 
@@ -24,8 +27,12 @@ class Chonk:
         if self._size > 0 and self._size <= self._capacity // 4: 
             self._resize(self._capacity//2)
             
-    def __spillbeans(self, index):
-        pass 
+    def __getitem__(self, index):
+        return self.spot(index)
+    
+    def __setitem__(self, index, value):
+        index = self._check_chonk_index(index)
+        self._data[index] = value 
     
     def yeet_in(self, value):
         # append 
@@ -34,7 +41,11 @@ class Chonk:
         self._data[self._size] = value 
         self._size += 1 
     
-    def peek(self, index):
+    def peek(self): 
+        # peek 
+        return self._data[self._size - 1] 
+    
+    def spot(self, index):
         # get 
         self._check_chonk_index(index)
         print(self._data[index] if self._data[index] != None else 'No value on given index')
@@ -42,11 +53,16 @@ class Chonk:
     
     def scoot_over(self, index, value):
         # insert 
+        if index == self._size or index == -1: 
+            self.yeet_in(value)
+            return value 
+        
         self._check_chonk_index(index)
         self._check_n_bulk()
         
         for j in range(self._size, index, -1):
             self._data[j] = self._data[j-1]
+            
         self._data[index] = value 
         self._size += 1 
         return value
@@ -57,17 +73,17 @@ class Chonk:
             raise IndexError("Nothing to yoink from Chonky list")
         if index == -1:
             index = self._size - 1 
-        self._check_chonk_index(index)
+        index = self._check_chonk_index(index)
 
         yoinked = self._data[index]
         for j in range(index, self._size - 1):
             self._data[j] = self._data[j+1]
             
-        # self._data[self._size - 1] = None 
-        # eftersom vi utgår från size i andra ärenden
-        # kommer vi inte komma åt denna oavsett
-        # den kommer blir overridden vid kallelse på funktioner
-        # som påverkar data... 
+        self._data[self._size - 1] = None 
+        # logically this could be left out, since it wont be accessed 
+        # however i wil leave it because i want infinite bum memory 
+        # and because python is special 
+        
         self._size -= 1 
         
         self._check_n_cut()
@@ -105,27 +121,15 @@ a.yeet_in(2)
 a.yeet_in(54)
 a.yeet_in(9)
 a.yeet_in(24)
-
-a.chunk_size()
-a.is_chunky()
-
-print(a)
 a.yeet_in(445)
 a.yeet_in(134)
-
-a.scoot_over(3, 88)
 print(a)
-
 
 # a.yoink()
 a.yoink(-2)
-a.hunt_n_nuke(3)
 print(a)
-
-a.hunt_n_nuke(88)
-# a.yoink()
-a.yoink()
-print(a)
+# a.hunt_n_nuke(3)
+# print(a)
 
 print(a[2])
 
