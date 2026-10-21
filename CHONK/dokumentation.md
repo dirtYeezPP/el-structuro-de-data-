@@ -81,11 +81,12 @@ In the case of a user giving the index -2 in a function such as
 `yoink`, this function will be called. The current size is then added onto the index
 so that it mirrors the same index but in positive terms. 
 
-The function later checks if the index is greater than or equal to zero and 
-lesser than the current size (amount of present elements). 
-In that case an IndexError is raised, to alert the user that the Index is out of
-bounds. 
-The index is then returned, as since it is an internal function 
+The function later checks if the index is within a valid range, (greater 
+than or equal to zero, and less than the current size). If the index is not 
+within the range, an indexError is raised to alert the user 
+that the index is out of bounds. 
+
+The index is then returned because since it is an internal function 
 the value needs to be returned for future usage purposes. 
 
 ### GET AND SET
