@@ -27,7 +27,6 @@ class Chonk:
     def __spillbeans(self, index):
         pass 
     
-    
     def yeet_in(self, value):
         # append 
         self._check_n_bulk()
@@ -64,7 +63,11 @@ class Chonk:
         for j in range(index, self._size - 1):
             self._data[j] = self._data[j+1]
             
-        self._data[self._size - 1] = None
+        # self._data[self._size - 1] = None 
+        # eftersom vi utgår från size i andra ärenden
+        # kommer vi inte komma åt denna oavsett
+        # den kommer blir overridden vid kallelse på funktioner
+        # som påverkar data... 
         self._size -= 1 
         
         self._check_n_cut()
