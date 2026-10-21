@@ -43,12 +43,11 @@ class ArrayList:
         # 1. Resolve index
         # 2. Save value
         # 3. Shift forwards
-        # 4. Clear tail slot to None, decrement self._size
+        # 4. Clear last slot to None, decrement self._size
         # 5. Return saved value
         pass
 
     def __str__(self):
-        # Return only the used portion: self._data[:self._size]
         return f"{[self._data[i] for i in range(self._size)]}"
 ```
 
@@ -375,3 +374,6 @@ class C:
 ```
 https://docs.python.org/3/tutorial/classes.html
 https://www.quora.com/How-do-I-use-a-class-function-inside-another-class-function-in-Python
+
+
+

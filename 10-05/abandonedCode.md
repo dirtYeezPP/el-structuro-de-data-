@@ -522,3 +522,17 @@ def insertValue(self, index, value):
     self._size += 1
 ```
 
+``` py
+   def hunt_n_nuke(self, value):
+        # remove 
+        for i in range(self._size):
+            if self._data[i] == value: 
+                for j in range(i, self._size - 1):
+                    self._data[j] = self._data[j + 1]
+                self._data[self._size - 1] = None 
+                self._size -= 1 
+                return value 
+        print(f"Value {value} not found")
+        return None 
+```
+

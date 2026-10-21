@@ -33,6 +33,9 @@ class Chonk:
     def __setitem__(self, index, value):
         index = self._check_chonk_index(index)
         self._data[index] = value 
+        
+    def __len__(self):
+        return self._size 
     
     def yeet_in(self, value):
         # append 
@@ -47,7 +50,7 @@ class Chonk:
     
     def spot(self, index):
         # get 
-        self._check_chonk_index(index)
+        index = self._check_chonk_index(index)
         print(self._data[index] if self._data[index] != None else 'No value on given index')
         return self._data[index]
     
@@ -57,7 +60,7 @@ class Chonk:
             self.yeet_in(value)
             return value 
         
-        self._check_chonk_index(index)
+        index = self._check_chonk_index(index)
         self._check_n_bulk()
         
         for j in range(self._size, index, -1):
@@ -93,11 +96,7 @@ class Chonk:
         # remove 
         for i in range(self._size):
             if self._data[i] == value: 
-                for j in range(i, self._size - 1):
-                    self._data[j] = self._data[j + 1]
-                self._data[self._size - 1] = None 
-                self._size -= 1 
-                return value 
+                return self.yoink(i)
         print(f"Value {value} not found")
         return None 
                     
@@ -126,11 +125,14 @@ a.yeet_in(134)
 print(a)
 
 # a.yoink()
-a.yoink(-2)
-print(a)
-# a.hunt_n_nuke(3)
+# a.yoink(-2)
+# a.scoot_over(2, 99)
 # print(a)
+a.hunt_n_nuke(24)
+print(a)
+
 
 print(a[2])
+print(len(a))
 
 
