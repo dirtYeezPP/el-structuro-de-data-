@@ -306,3 +306,13 @@ This function returns the values stored in `self._data` (or chonk
 so to speak) formatted as a list yes. Since the iteration is only 
 executed in the range of the size, empty slots wont be outputted as 
 `[None, None]`. 
+
+## EDGE CASES 
+##### MINIMUM CAPACITY 
+In the `check_n_cut` function, simply dividing the capacity by 2 could end 
+badly if chonk is not chonky at all. 
+
+Say the capacity shrinks to 1 or 0, the nex time a user adds something, 
+the program could crash or have to trigger a resize operation stressfully. 
+In this case i could have enforced a minimum capacity by 
+stating a maximum, But oh well. 
