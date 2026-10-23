@@ -377,3 +377,15 @@ https://www.quora.com/How-do-I-use-a-class-function-inside-another-class-functio
 
 
 
+``` py
+def __add__(self, other:ArrayList):
+        new = ArrayList()
+ 
+        for i in range(self._size):
+            new.append(self._data[i])
+ 
+        for i in range(other._size):
+            new.append(other._data[i])
+ 
+        return new
+```

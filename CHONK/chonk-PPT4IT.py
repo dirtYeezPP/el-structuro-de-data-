@@ -6,6 +6,7 @@ class Chonk:
         self._data = [None] * self._capacity
 
     def _check_cap(self, initial_capacity):
+        # validate capacity of instance 
         if initial_capacity < 0: 
             print(f"Chonk cannot have the capacity of {initial_capacity}, the value will become positive.")
             initial_capacity = initial_capacity * -1 
@@ -14,6 +15,7 @@ class Chonk:
         return initial_capacity 
 
     def _resize(self, new_capacity):
+        # internal resize for future purposes 
         new = [None] * new_capacity 
         for i in range(self._size): 
             new[i] = self._data[i]
@@ -21,6 +23,7 @@ class Chonk:
         self._capacity = new_capacity
         
     def _check_chonk_index(self, index): 
+        # validate index value 
         if index < 0: 
             index += self._size 
         if not (0 <= index < self._size): 
@@ -28,23 +31,42 @@ class Chonk:
         return index 
         
     def _check_n_bulk(self):
+        # check if the instance of class needs a bigger capacity 
         if self._size == self._capacity: 
             self._resize(self._capacity * 2)
             print("rawr")
              
     def _check_n_cut(self): 
+        # check if the instance of class needs a smaller capacity 
         if self._size > 0 and self._size <= self._capacity // 4: 
-            self._resize(self._capacity//2)
+            new_c = max(self._capacity // 2, 4)
+            if new_c != self._capacity: 
+                self._resize(self._capacity//2)
             
     def __getitem__(self, index):
+        # function that allows for syntax with square brackets 
         return self.spot(index)
     
     def __setitem__(self, index, value):
+        # function that allows for syntax with square brackets to set value 
         index = self._check_chonk_index(index)
         self._data[index] = value 
         
     def __len__(self):
-        return self._capacity  
+        # function which allows for syntax of 'len(chonk)' 
+        return self._size  
+
+    def __add__(self, other:Chonk): # typed rawr
+        # function which allows the instance to accept an argument of a list 
+        new = Chonk()
+        for i in range(self._size):
+            new.yeet_in(self._data[i])
+        for i in range(other._size):
+            new.yeet_in(other._data[i])
+        return new 
+
+    def __del__(self): 
+        print("Destructor called, instance deleted")
     
     def yeet_in(self, value):
         # append 
@@ -121,6 +143,7 @@ class Chonk:
         return self._size  
         
     def __str__(self): 
+        # print 
         return f"{[self._data[i] for i in range(self._size)]}"
     
 
@@ -128,4 +151,7 @@ c = Chonk(-2)
 
 print(c)
 print(len(c))
-c.yoink(-1)
+# c.yoink(-1)
+
+b = Chonk(4)
+del b 
