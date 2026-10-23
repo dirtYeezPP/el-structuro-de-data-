@@ -65,8 +65,9 @@ class Chonk:
             new.yeet_in(other._data[i])
         return new 
 
-    def __del__(self): 
-        print("Destructor called, instance deleted")
+    # def __del__(self): 
+    #     print("Destructor called, instance deleted")
+         
     
     def yeet_in(self, value):
         # append 
@@ -154,4 +155,7 @@ print(len(c))
 # c.yoink(-1)
 
 b = Chonk(4)
-del b 
+b.yeet_in(43)
+b.yeet_in(333)
+b.yeet_in(299)
+print(b)
